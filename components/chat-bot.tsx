@@ -28,22 +28,52 @@ export function ChatBot() {
     });
   }, [messages, open]);
 
-  const send = () => {
+  const send = async () => {
     const text = input.trim();
     if (!text) return;
-    const userMsg: Message = { id: Date.now(), role: "user", content: text };
+
+    const userMsg: Message = {
+      id: Date.now(),
+      role: "user",
+      content: text,
+    };
+
     setMessages((m) => [...m, userMsg]);
     setInput("");
-    setTimeout(() => {
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              role: "user",
+              parts: [{ text }],
+            },
+          ],
+        }),
+      });
+
+      const data = await res.json();
+
+      // 🔥 LOG RESPONSE FIRST
+      console.log("Gemini response:", data);
+      const reply = data.text; // ✅ THIS is correct
+
       setMessages((m) => [
         ...m,
         {
           id: Date.now() + 1,
           role: "bot",
-          content: "Thanks for your message! This is a demo reply.",
+          content: reply,
         },
       ]);
-    }, 600);
+    } catch (err) {
+      console.error("Chat error:", err);
+    }
   };
 
   return (
