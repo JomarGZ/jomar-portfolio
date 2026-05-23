@@ -3,6 +3,7 @@ import { Bokor, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ThemeToggle } from "./theme-toggle";
+import { ChatBot } from "@/components/chat-bot";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" enableSystem defaultTheme="light">
           {children}
         </ThemeProvider>
+        <ChatBot />
       </body>
     </html>
   );
