@@ -5,9 +5,14 @@ import { X, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import Markdown from "react-markdown";
 
-type Message = { id: number; role: "user" | "bot"; content: string };
-
+type Message = {
+  id: number;
+  role: "user" | "bot";
+  content: string;
+  isLoading?: boolean;
+};
 export function ChatBot() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -28,22 +33,81 @@ export function ChatBot() {
     });
   }, [messages, open]);
 
-  const send = () => {
+  const send = async () => {
     const text = input.trim();
     if (!text) return;
-    const userMsg: Message = { id: Date.now(), role: "user", content: text };
+
+    const userMsg: Message = {
+      id: Date.now(),
+      role: "user",
+      content: text,
+    };
+
     setMessages((m) => [...m, userMsg]);
     setInput("");
-    setTimeout(() => {
+
+    // 🧠 Create empty bot message (we will fill it live)
+    const botId = Date.now() + 1;
+
+    setMessages((m) => [
+      ...m,
+      {
+        id: botId,
+        role: "bot",
+        content: "",
+        isLoading: true,
+      },
+    ]);
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              role: "user",
+              parts: [{ text }],
+            },
+          ],
+        }),
+      });
+
+      if (!res.body) throw new Error("No response body");
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+
+      let fullText = "";
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value);
+        fullText += chunk;
+
+        // 🔥 live update UI
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === botId ? { ...m, content: fullText, isLoading: false } : m,
+          ),
+        );
+      }
+    } catch (err) {
+      console.error("Stream error:", err);
+
       setMessages((m) => [
         ...m,
         {
-          id: Date.now() + 1,
+          id: Date.now() + 2,
           role: "bot",
-          content: "Thanks for your message! This is a demo reply.",
+          content: "Sorry, something went wrong.",
         },
       ]);
-    }, 600);
+    }
   };
 
   return (
@@ -101,7 +165,15 @@ export function ChatBot() {
                       : "bg-card border rounded-bl-sm",
                   )}
                 >
-                  {m.content}
+                  {m.isLoading ? (
+                    <div className="flex gap-1 items-center py-1">
+                      <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/60 animate-bounce" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/60 animate-bounce [animation-delay:150ms]" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/60 animate-bounce [animation-delay:300ms]" />
+                    </div>
+                  ) : (
+                    <Markdown>{m.content}</Markdown>
+                  )}
                 </div>
               </div>
             ))}
