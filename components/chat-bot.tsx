@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send } from "lucide-react";
+import { MessageCircleIcon, SendIcon } from "@animateicons/react/lucide";
+import { X, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -119,8 +120,13 @@ export function ChatBot() {
               placeholder="Type a message..."
               className="flex-1"
             />
-            <Button type="submit" size="icon" disabled={!input.trim()}>
-              <Send className="h-4 w-4" />
+            <Button
+              type="submit"
+              size="icon"
+              className="cursor-pointer"
+              disabled={!input.trim()}
+            >
+              <SendIcon size={64} duration={1} color="#ffffff" />
             </Button>
           </form>
         </div>
@@ -131,7 +137,7 @@ export function ChatBot() {
         className="py-6 cursor-pointer rounded-full px-5 shadow-md hover:scale-105 transition-transform flex items-center gap-2"
         aria-label={open ? "Close chat" : "Open chat"}
       >
-        <MessageCircle className="h-5 w-5" />
+        <MessageCircleIcon size={64} duration={1} color="#ffffff" />
         <span className="font-medium">Chat with Jomar</span>
       </Button>
     </div>
