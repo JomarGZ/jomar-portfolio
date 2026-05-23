@@ -60,6 +60,10 @@ const techCategories = [
         iconSrc: "https://thesvg.org/icons/github-actions/default.svg",
       },
       {
+        name: "Stripe",
+        iconSrc: "https://thesvg.org/icons/stripe/default.svg",
+      },
+      {
         name: "Git & GitHub",
         iconSrc: "https://thesvg.org/icons/github/default.svg",
       },

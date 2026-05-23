@@ -21,7 +21,7 @@ const projects: Project[] = [
       "Full-featured online shopping platform with secure checkout and product management.",
     image: "/images/thumbnail1.jpg",
     tags: ["LARAVEL", "ReactJS"],
-    stack: ["Laravel", "MySQL", "Tailwind", "ReactJS"],
+    stack: ["Laravel", "MySQL", "Tailwind", "ReactJS", "stripe"],
     demoUrl: "#",
     repoUrl: "https://github.com/JomarGZ/sellora",
   },
