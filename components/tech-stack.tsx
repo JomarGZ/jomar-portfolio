@@ -90,8 +90,8 @@ export default function TechStack() {
                   <Image
                     src={skill.iconSrc}
                     alt={skill.name}
-                    width={20}
-                    height={20}
+                    width={24}
+                    height={24}
                   />
                   {skill.name}
                 </span>
