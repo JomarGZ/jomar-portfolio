@@ -41,8 +41,11 @@ export async function POST(req: Request) {
   } catch (err) {
     console.error(err);
 
-    return new Response("Error generating response", {
-      status: 500,
-    });
+    return new Response(
+      "Hey there 👋 I wasn’t able to generate a response right now. Please try again in a moment 😊",
+      {
+        status: 500,
+      },
+    );
   }
 }
