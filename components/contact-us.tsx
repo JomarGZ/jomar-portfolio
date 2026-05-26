@@ -4,8 +4,33 @@ import { Mail, CalendarDays } from "lucide-react";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import { SectionCard } from "./section-card";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
-export default function Contact() {
+export default function ContactUs() {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const sendEmail = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!formRef.current) return;
+
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formRef.current,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+      );
+
+      alert("Message sent successfully!");
+
+      formRef.current.reset();
+    } catch (error) {
+      console.error(error);
+      alert("Failed to send message.");
+    }
+  };
   return (
     <SectionCard className="container-section py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -66,32 +91,19 @@ export default function Contact() {
           <h3 className="text-headline-md mb-4">Get in touch</h3>
 
           <form
+            ref={formRef}
+            onSubmit={sendEmail}
             className="flex flex-col gap-3"
-            onSubmit={(e) => {
-              e.preventDefault();
-
-              const form = e.currentTarget;
-              const name = (form.elements.namedItem("name") as HTMLInputElement)
-                .value;
-              const email = (
-                form.elements.namedItem("email") as HTMLInputElement
-              ).value;
-              const message = (
-                form.elements.namedItem("message") as HTMLTextAreaElement
-              ).value;
-
-              window.location.href = `mailto:jomar.godinezs@gmail.com?subject=Message from ${name}&body=Email: ${email}%0D%0A%0D%0A${message}`;
-            }}
           >
             <input
-              name="name"
+              name="user_name"
               type="text"
               placeholder="Your name"
               className="px-3 py-2 rounded-lg border border-border bg-transparent text-body-sm"
             />
 
             <input
-              name="email"
+              name="user_email"
               type="email"
               placeholder="Your email"
               className="px-3 py-2 rounded-lg border border-border bg-transparent text-body-sm"
@@ -111,7 +123,7 @@ export default function Contact() {
           {/* QUICK ACTIONS */}
           <div className="flex flex-col gap-2 mt-4 text-body-sm">
             <a
-              href="mailto::jomar.godinezs@gmail.com"
+              href="mailto:jomar.godinezs@gmail.com"
               className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition"
             >
               <Mail className="w-4 h-4" />

@@ -7,11 +7,6 @@ const galleryImages = [
     className: "col-span-2 row-span-2",
   },
   {
-    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCQKvQEWOiZEp3v-wwdPV9wITf5f1zw1apL5QwWn8FDewisr1C_V7GDkiRdg7iXANjhDf9Z6KEvwxm10MRn5mS-EQAxx_-MRzX0vhKtv706qCA-av0_I62C3YjGiFU5sFzMXoK1imUVM8T4pK8GBk_CIDS3drx0mW3UAf-DoLL-uYtmjcS1Gq8WW_90rT5xi244SQ6TYoxfmEW50UA8MIAR5DWj5Uhf7b72Jy8i02AupOAn_59d8yRZ-49XfnyLPlGHPLRjvgD4YCU",
-    alt: "Muay Thai training gym",
-    className: "",
-  },
-  {
     src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBPfZYwPde6ZordPYe-eTbjdLIAeh_D7axDsGrESoaw8byUYP_UdY_MK158OWNJ4V8m2U7l2sLB9d_LiRQjY2XXL3eKBp7lkq-X2oY4_cIfo9mG0ebpIo1VMdxenzHoF-EtiUCmUdnkmA4EarwYX8uxjMKp3cNlAG1jsN-ndbo4VNZLaGjFVfxVtPYWWpc0HEDoo6p6wDbPxrl8OGqSWjd6x2_Xcrwwgy4fRPcZ8fHWQjxeDvxYGd1nN3Szcdt-BnNjF44olEBuZf0",
     alt: "Laravel code on screen",
     className: "",
@@ -27,7 +22,7 @@ export default function Gallery() {
   return (
     <section className="py-16 md:py-24 border-t border-border-subtle">
       <h2 className="font-headline-lg text-headline-lg mb-12">Gallery</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-[600px]">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-150">
         {galleryImages.map((img, i) => (
           <div
             key={i}
