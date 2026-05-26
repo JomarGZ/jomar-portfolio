@@ -75,7 +75,7 @@ export default function TechStack() {
     <SectionCard title="Tech Stack" className="order-3">
       <div className="flex flex-col gap-gutter">
         {techCategories.map((cat) => (
-          <div key={cat.title} className="gap-4">
+          <div key={cat.title} className="gap-4 mb-2">
             <h3 className="text-headline-sm mb-3">{cat.title}</h3>
             <div className="flex flex-wrap gap-2">
               {cat.skills.map((skill) => (
