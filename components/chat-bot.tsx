@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { MessageCircleIcon, SendIcon } from "@animateicons/react/lucide";
-import { X, Send } from "lucide-react";
+import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -15,13 +15,14 @@ type Message = {
 };
 export function ChatBot() {
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
       role: "bot",
       content:
-        "Hi there! 👋🏻 Thanks for visiting my website. Feel free to ask me anything about programming, web development, or the tools I use. Let me know how can I help!",
+        "Hey there 👋 I’m Jomar. I build web applications using Laravel, Vue.js, and modern web tools. You can ask me about my projects, experience, or what services I can help you with 😊",
     },
   ]);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -36,6 +37,9 @@ export function ChatBot() {
   const send = async () => {
     const text = input.trim();
     if (!text) return;
+    if (isLoading) return;
+
+    setIsLoading(true);
 
     const userMsg: Message = {
       id: Date.now(),
@@ -107,6 +111,8 @@ export function ChatBot() {
           content: "Sorry, something went wrong.",
         },
       ]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -166,10 +172,14 @@ export function ChatBot() {
                   )}
                 >
                   {m.isLoading ? (
-                    <div className="flex gap-1 items-center py-1">
-                      <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/60 animate-bounce" />
-                      <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/60 animate-bounce [animation-delay:150ms]" />
-                      <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/60 animate-bounce [animation-delay:300ms]" />
+                    <div className="flex items-baseline gap-2 py-1 text-sm text-muted-foreground">
+                      <span>Typing</span>
+
+                      <div className="flex gap-1 items-center">
+                        <span className="h-1 w-1 rounded-full bg-muted-foreground/60 animate-bounce" />
+                        <span className="h-1 w-1 rounded-full bg-muted-foreground/60 animate-bounce [animation-delay:150ms]" />
+                        <span className="h-1 w-1 rounded-full bg-muted-foreground/60 animate-bounce [animation-delay:300ms]" />
+                      </div>
                     </div>
                   ) : (
                     <Markdown>{m.content}</Markdown>
@@ -196,7 +206,7 @@ export function ChatBot() {
               type="submit"
               size="icon"
               className="cursor-pointer"
-              disabled={!input.trim()}
+              disabled={!input.trim() || isLoading}
             >
               <SendIcon size={64} duration={1} color="#ffffff" />
             </Button>

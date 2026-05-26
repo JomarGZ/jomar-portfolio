@@ -1,5 +1,5 @@
 import About from "./about";
-import Contacts from "./contacts";
+import ContactUs from "./contact-us";
 import Education from "./education";
 import Experience from "./experience";
 import Projects from "./projects";
@@ -19,7 +19,7 @@ export default function HomeContent() {
         {/* <Gallery /> */}
       </div>
       <div className="lg:col-span-2">
-        <Contacts />
+        <ContactUs />
       </div>
     </div>
   );

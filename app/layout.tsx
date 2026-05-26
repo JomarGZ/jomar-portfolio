@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ThemeToggle } from "./theme-toggle";
 import { ChatBot } from "@/components/chat-bot";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({
           {children}
         </ThemeProvider>
         <ChatBot />
+        <Toaster />
       </body>
     </html>
   );
