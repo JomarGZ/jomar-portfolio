@@ -71,10 +71,11 @@ export const SYSTEM_PROMPT = `
     - Analytics: sales tracking and business insights dashboard
 
     ---
-
+    
     ### Portfolio Website
     - Built with Next.js
     - Includes AI chatbot assistant
+    - Design and concept inspired by Bryllim, a software engineer and content creator
 
     ---
 
