@@ -43,6 +43,10 @@ const techCategories = [
         iconSrc: "https://thesvg.org/icons/laravel/default.svg",
       },
       {
+        name: "FilamentPHP",
+        iconSrc: "https://thesvg.org/icons/filament/default.svg",
+      },
+      {
         name: "MySQL",
         iconSrc: "https://thesvg.org/icons/mysql/wordmark-light.svg",
       },
@@ -86,8 +90,8 @@ export default function TechStack() {
                   <Image
                     src={skill.iconSrc}
                     alt={skill.name}
-                    width={16}
-                    height={16}
+                    width={20}
+                    height={20}
                   />
                   {skill.name}
                 </span>
