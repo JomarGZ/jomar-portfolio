@@ -172,7 +172,7 @@ export default function ContactUs() {
             <p className="flex items-center gap-2 justify-center text-muted-foreground hover:text-foreground transition">
               Or
             </p>
-            <p className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition">
+            <p className="flex items-center gap-2 text-muted-foreground justify-center hover:text-foreground transition">
               <Mail className="w-4 h-4 hidden md:block" />
               Email me directly at
               <span className="font-semibold">{email}</span>
