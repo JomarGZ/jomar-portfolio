@@ -42,10 +42,8 @@ export async function POST(req: Request) {
     console.error(err);
 
     return new Response(
-      "Hey there 👋 I wasn’t able to generate a response right now. Please try again in a moment 😊",
-      {
-        status: 500,
-      },
+      "Hey there 👋 I’m a bit busy at the moment (probably working on something in the gym or coding 😄). Please try again in a bit 😊",
+      { status: 429 },
     );
   }
 }
