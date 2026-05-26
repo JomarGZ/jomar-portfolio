@@ -40,17 +40,16 @@ export default function ContactUs() {
     });
     if (!validationResult.success) {
       const errors = treeifyError(validationResult.error);
-      console.log(errors);
       setErrors(errors.properties);
       setIsLoading(false);
       return;
     }
     try {
       await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        process.env.NEXT_PRIVATE_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PRIVATE_EMAILJS_TEMPLATE_ID!,
         formRef.current,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+        process.env.NEXT_PRIVATE_EMAILJS_PUBLIC_KEY!,
       );
 
       toast.success("Message sent successfully!");

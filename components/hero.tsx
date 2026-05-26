@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { ThemeToggle } from "@/app/theme-toggle";
 
 export default function Hero() {
+  const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
   return (
     <section className="container-section py-8 md:px-6 px-4 flex flex-col md:flex-row items-center gap-12">
       <div className="md:hidden fixed top-4 right-4 z-50">
@@ -59,7 +60,7 @@ export default function Hero() {
             variant="outline"
             className="gap-2 rounded-xl px-5 py-2"
           >
-            <a href="mailto:jomar.godinezs@gmail.com">
+            <a href={`mailto:${email}`}>
               <Mail className="h-4 w-4" /> Send Email
             </a>
           </Button>

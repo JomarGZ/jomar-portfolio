@@ -6,7 +6,7 @@ export async function POST(req: Request) {
     const { contents } = await req.json();
 
     const ai = new GoogleGenAI({
-      apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY!,
+      apiKey: process.env.NEXT_PRIVATE_GEMINI_API_KEY!,
     });
 
     const stream = await ai.models.generateContentStream({
