@@ -169,20 +169,14 @@ export default function ContactUs() {
           </form>
           {/* QUICK ACTIONS */}
           <div className="flex flex-col gap-2 mt-4 text-body-sm">
+            <p className="flex items-center gap-2 justify-center text-muted-foreground hover:text-foreground transition">
+              Or
+            </p>
             <p className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition">
-              <Mail className="w-4 h-4" />
+              <Mail className="w-4 h-4 hidden md:block" />
               Email me directly at
               <span className="font-semibold">{email}</span>
             </p>
-
-            <a
-              href="https://calendly.com/jomar-godinezs/30min"
-              target="_blank"
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition"
-            >
-              <CalendarDays className="w-4 h-4" />
-              Schedule a call
-            </a>
           </div>
         </div>
       </div>
