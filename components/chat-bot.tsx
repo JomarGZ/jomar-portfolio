@@ -22,7 +22,7 @@ export function ChatBot() {
       id: 1,
       role: "bot",
       content:
-        "Hi there! 👋🏻 Thanks for visiting my website. Feel free to ask me anything about programming, web development, or the tools I use. Let me know how can I help!",
+        "Hey there 👋 I’m Jomar. I build web applications using Laravel, Vue.js, and modern web tools. You can ask me about my projects, experience, or what services I can help you with 😊",
     },
   ]);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -172,7 +172,7 @@ export function ChatBot() {
                   )}
                 >
                   {m.isLoading ? (
-                    <div className="flex items-center gap-2 py-1 text-sm text-muted-foreground">
+                    <div className="flex items-baseline gap-2 py-1 text-sm text-muted-foreground">
                       <span>Typing</span>
 
                       <div className="flex gap-1 items-center">

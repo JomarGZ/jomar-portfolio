@@ -11,13 +11,12 @@ export async function POST(req: Request) {
 
     const stream = await ai.models.generateContentStream({
       model: "gemini-3.5-flash",
-      contents: [
-        {
-          role: "user",
-          parts: [{ text: SYSTEM_PROMPT }],
-        },
-        ...contents,
-      ],
+      config: {
+        systemInstruction: SYSTEM_PROMPT,
+        temperature: 0.4,
+      },
+
+      contents,
     });
 
     const encoder = new TextEncoder();
