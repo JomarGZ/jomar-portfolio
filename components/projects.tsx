@@ -34,10 +34,10 @@ const projects: Project[] = [
     title: "Task Management Web App",
     description:
       "Project and task tracking system for organizing teams, deadlines, and workflows.",
-    image: "/images/thumbnail2.jpg",
+    image: "/images/task-management-Thumbnail.jpg",
     tags: ["Laravel", "VueJS"],
     stack: ["Laravel", "VueJS", "MySQL"],
-    youtubeId: "YOUR_VIDEO_ID_HERE",
+    youtubeId: "pH0ECtzRDqY",
     demoUrl: "#",
     repoUrl: "https://github.com/JomarGZ/Vue-Task-Management-App",
   },
