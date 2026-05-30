@@ -172,8 +172,8 @@ export function ChatBot() {
                   )}
                 >
                   {m.isLoading ? (
-                    <div className="flex items-baseline gap-2 py-1 text-sm text-muted-foreground">
-                      <span>Typing</span>
+                    <div className="flex items-baseline gap-1.5 py-1 text-sm text-muted-foreground">
+                      <span>Thinking</span>
 
                       <div className="flex gap-1 items-center">
                         <span className="h-1 w-1 rounded-full bg-muted-foreground/60 animate-bounce" />
