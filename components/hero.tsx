@@ -41,7 +41,7 @@ export default function Hero() {
         </p>
 
         <p className="text-headline-sm text-foreground mb-4">
-          Software Developer | Laravel &amp; ReactJS | SEO | Freelancer
+          Software Developer | Laravel &amp; ReactJS | Freelancer
         </p>
 
         <div className="flex flex-wrap justify-center md:justify-start text-sm gap-4">
